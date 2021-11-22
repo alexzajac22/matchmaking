@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Matchmaker with Alec ZAjac</title>
+    <link rel="stylesheet" href="matchmaker.css">
+    <script src="matchmaker.js"></script>
+</head>
+
+<body>
+    <center>
+        <h1>Mathchmaker meet your maker</h1>
+    </center>
+
+    <center>
+        <p>Please go through each drop down menu below and select the answer you agree with with the question after you are done you will see you percent compatability.</p>
+    </center>
+
+    <center> <label>Soccer is the best sport</label><br />
+        <select id="q1">
+        <option value="5">Strongly agree</option>
+        <option value="4">agree</option>
+        <option value="3">neither</option>
+        <option value="2">disagree</option>
+        <option value="1">strongly disagree</option>   
+    </select>
+        <br /><br />
+        <label>basketball sucks</label><br />
+        <select id="q2">
+        <option value="5">Strongly agree</option>
+        <option value="4">agree</option>
+        <option value="3">neither</option>
+        <option value="2">disagree</option>
+        <option value="1">strongly disagree</option>   
+    </select>
+        <br /><br />
+        <label>Html is better then python</label><br />
+        <select id="q3">
+        <option value="5">Strongly agree</option>
+        <option value="4">agree</option>
+        <option value="3">neither</option>
+        <option value="2">disagree</option>
+        <option value="1">strongly disagree</option>   
+    </select>
+        <br /><br />
+        <label>Drones are cool</label><br />
+        <select id="q4">
+        <option value="5">Strongly agree</option>
+        <option value="4">agree</option>
+        <option value="3">neither</option>
+        <option value="2">disagree</option>
+        <option value="1">strongly disagree</option>   
+    </select>
+        <br /><br />
+        <label>This project was easy</label><br />
+        <select id="q5">
+        <option value="5">Strongly agree</option>
+        <option value="4">agree</option>
+        <option value="3">neither</option>
+        <option value="2">disagree</option>
+        <option value="1">strongly disagree</option>   
+    </select>
+        <br />
+        <br />
+        <br />
+        <button onclick="calculateCompatibility()">Calculate Compatability</button>
+        <p id="compatibility"></p>
+
+
+        <script>
+            console.log("Starting Matchmaker Lite...");
+
+            const DESIRED_RESPONSE = [
+                5,
+                3,
+                3,
+                1,
+                1,
+
+
+            ]
+            const MAX_SCORE = 25
+
+            const ANSWER_WEIGHT = [
+                3,
+                1,
+                2,
+                1,
+                1,
+            ]
+
+            function calculateCompatibility() {
+                console.log("calculateCompatibility()");
+                let question1Response = document.getElementById("q1").selectedOptions[0].value;
+                let question2Response = document.getElementById("q2").selectedOptions[0].value;
+                let question3Response = document.getElementById("q3").selectedOptions[0].value;
+                let question4Response = document.getElementById("q4").selectedOptions[0].value;
+                let question5Response = document.getElementById("q5").selectedOptions[0].value;
+
+                console.log("question 1 Answer")
+                console.log(document.getElementById("q1").selectedOptions[0].text);
+                console.log(document.getElementById("q1").selectedOptions[0].value);
+                console.log(question1Response);
+
+                console.log("question 2 Answer")
+                console.log(document.getElementById("q2").selectedOptions[0].text);
+                console.log(document.getElementById("q2").selectedOptions[0].value);
+                console.log(question2Response);
+
+                console.log("question 3 Answer")
+                console.log(document.getElementById("q3").selectedOptions[0].text);
+                console.log(document.getElementById("q3").selectedOptions[0].value);
+                console.log(question3Response);
+
+                console.log("question 4 Answer")
+                console.log(document.getElementById("q4").selectedOptions[0].text);
+                console.log(document.getElementById("q4").selectedOptions[0].value);
+                console.log(question4Response);
+
+                console.log("question 5 Answer")
+                console.log(document.getElementById("q5").selectedOptions[0].text);
+                console.log(document.getElementById("q5").selectedOptions[0].value);
+                console.log(question5Response);
+
+                let question1Compatiblitly = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+
+                let question2Compatiblitly = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+
+                let question3Compatiblitly = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+
+                let question4Compatiblitly = 5 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
+
+                let question5Compatiblitly = 5 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+
+                console.log("c1=" + question1Compatiblitly);
+                console.log("c2=" + question2Compatiblitly);
+                console.log("c3=" + question3Compatiblitly);
+                console.log("c4=" + question4Compatiblitly);
+                console.log("c5=" + question5Compatiblitly);
+
+
+                let totalCompatibility = question1Compatiblitly + question2Compatiblitly + question3Compatiblitly + question4Compatiblitly + question5Compatiblitly
+
+                totalCompatibility *= 100 / MAX_SCORE
+                totalCompatibility = Math.round(totalCompatibility)
+                console.log("tc" + totalCompatibility)
+
+
+                document.getElementById("compatibility").innerHTML = "Your compatibility is: " + totalCompatibility;
+
+
+            }
+        </script>
+    </center>
+
+</body>
+
+
+
+</html>
+
+</html>
